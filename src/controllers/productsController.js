@@ -12,7 +12,13 @@ const queryById = async (req, res) => {
     return res.status(200).json(response);
 };
 
+const postProduct = async (req, res) => {
+  const response = await productsServices.postProduct(req.body);
+  return res.status(201).send(response);
+};
+
 module.exports = {
   queryAllProducts,
   queryById,
+  postProduct,
 };

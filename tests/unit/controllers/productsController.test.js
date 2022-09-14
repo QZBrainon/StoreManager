@@ -1,5 +1,8 @@
-const { expect } = require('chai');
+const chai = require('chai');
+const { expect } = chai;
 const sinon = require('sinon');
+const sinonChai = require('sinon-chai');
+chai.use(sinonChai);
 const mock = require('./mocks/productsControllerMocks')
 const productsService = require('../../../src/services/productsServices');
 const productsController = require('../../../src/controllers/productsController')
@@ -28,13 +31,13 @@ describe('Testa a camada controller', () => {
     
     sinon.stub(productsService, 'getProductById').resolves(mock[0]);
 
-    const req = {};
+    const req = {params: { id: 1}};
     const res = {};
 
     res.status = sinon.stub().returns(res)
-    res.json = sinon.stub().returns(res)
+    res.json = sinon.stub().returns()
 
-    await productsController.queryAllProducts(req, res)
+    await productsController.queryById(req, res)
 
     expect(res.status).to.have.been.calledWith(200)
     expect(res.json).to.have.been.calledWith(mock[0])
@@ -44,13 +47,13 @@ describe('Testa a camada controller', () => {
     
     sinon.stub(productsService, 'getProductById').resolves({ message: 'Product not found' });
 
-    const req = {};
+    const req = {params: { id: 1}};
     const res = {};
 
     res.status = sinon.stub().returns(res)
     res.json = sinon.stub().returns(res)
 
-    await productsController.queryAllProducts(req, res)
+    await productsController.queryById(req, res)
 
     expect(res.status).to.have.been.calledWith(404)
     expect(res.json).to.have.been.calledWith({ message: 'Product not found' })

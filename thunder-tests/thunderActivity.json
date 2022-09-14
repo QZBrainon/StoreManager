@@ -103,12 +103,17 @@
     "containerId": "",
     "name": "http://localhost:3000/products/5",
     "url": "http://localhost:3000/products/",
-    "method": "GET",
+    "method": "POST",
     "sortNum": 0,
     "created": "2022-09-11T20:27:08.510Z",
-    "modified": "2022-09-13T21:05:38.129Z",
+    "modified": "2022-09-14T03:06:16.391Z",
     "headers": [],
     "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"name\": \"ProdutoX\"\n}",
+      "form": []
+    },
     "tests": []
   }
 ]

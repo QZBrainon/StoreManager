@@ -13,7 +13,7 @@ describe('Testa a camada model da rota products', () => {
 
     it('Verifica GET /products', async () => {
     
-      sinon.stub(connection, 'execute').resolves(productsMock);
+      sinon.stub(connection, 'execute').resolves([productsMock]);
 
       const result = await productsModel.selectAll()
 

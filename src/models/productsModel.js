@@ -12,7 +12,16 @@ const selectById = async (id) => {
   return result;
 };
 
+const insert = async (product) => {
+  const [{ insertId }] = await conn.execute(
+    'INSERT INTO StoreManager.products (name) VALUES (?)',
+    [...Object.values(product)],
+  );
+  return insertId;
+}; 
+
 module.exports = {
   selectAll,
   selectById,
+  insert,
 };

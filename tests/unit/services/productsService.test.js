@@ -28,7 +28,7 @@ describe('Testa a camada service da rota products', () => {
 
       const result = await productsService.getProductById(1)
       
-      expect(result).to.be(productsMock[0])
+      expect(result).to.be.deep.equal(productsMock[0])
       expect(result).to.be.an('object')
       expect(result.id).to.equal(1)
       expect(result.name).to.equal("Martelo de Thor")

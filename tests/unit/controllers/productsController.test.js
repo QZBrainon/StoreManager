@@ -3,7 +3,7 @@ const { expect } = chai;
 const sinon = require('sinon');
 const sinonChai = require('sinon-chai');
 chai.use(sinonChai);
-const mock = require('./mocks/productsControllerMocks')
+const {productsMock} = require('./mocks/productsControllerMocks')
 const productsService = require('../../../src/services/productsServices');
 const productsController = require('../../../src/controllers/productsController')
 
@@ -13,7 +13,7 @@ describe('Testa a camada controller', () => {
 
   it('Testa caso de sucesso da resposta de todos os itens', async () => {
     
-    sinon.stub(productsService, 'getAllProducts').resolves(mock);
+    sinon.stub(productsService, 'getAllProducts').resolves(productsMock);
 
     const req = {};
     const res = {};
@@ -24,12 +24,12 @@ describe('Testa a camada controller', () => {
     await productsController.queryAllProducts(req, res)
 
     expect(res.status).to.have.been.calledWith(200)
-    expect(res.json).to.have.been.calledWith(mock)
+    expect(res.json).to.have.been.calledWith(productsMock)
   })
 
   it('Testa caso de sucesso na resposta de um item individual', async () => {
     
-    sinon.stub(productsService, 'getProductById').resolves(mock[0]);
+    sinon.stub(productsService, 'getProductById').resolves(productsMock[0]);
 
     const req = {params: { id: 1}};
     const res = {};
@@ -40,7 +40,7 @@ describe('Testa a camada controller', () => {
     await productsController.queryById(req, res)
 
     expect(res.status).to.have.been.calledWith(200)
-    expect(res.json).to.have.been.calledWith(mock[0])
+    expect(res.json).to.have.been.calledWith(productsMock[0])
   })
   
   it('Testa caso de falha na resposta de um item individual', async () => {

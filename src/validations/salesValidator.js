@@ -1,11 +1,11 @@
 const { salesSchema } = require('./salesSchema');
 
 const salesValidator = async (req, res, next) => {
-  const validation = salesSchema.validate(req.body);
+  const validation = await salesSchema.validate(req.body);
   if (!validation.error) return next();
-
+  
   const { error: { details: [{ message }] } } = validation;
-
+  
   if (message === '"productId" is required' || message === '"quantity" is required') {
     return res.status(400).json({ message });
   }

@@ -40,8 +40,19 @@ describe('Testa a camada service da rota products', () => {
       const result = await productsService.getProductById(9999)
 
       expect(result).to.be.an('object')
-      expect(result).to.deep.equal({message: "Product not found"})
+      expect(result).to.deep.equal({ message: 'Product not found' })
+      expect(result.message).to.equal('Product not found')
     })
 
+    it('Verifica a function postProduct', async () => {
+      const mock = {name: 'Martelo de Thor'}
+      sinon.stub(productsModel, 'insert').resolves(1)
+
+      const result = await productsService.postProduct(mock)
+
+      expect(result).to.be.deep.equal({ id: 1, name: 'Martelo de Thor' })
+      expect(result.id).to.equal(1)
+      expect(result.name).to.equal('Martelo de Thor')
+    })
   });
 });

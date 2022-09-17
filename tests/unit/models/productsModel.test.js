@@ -31,4 +31,12 @@ describe('Testa a camada model da rota products', () => {
       expect(result.id).to.equal(1)
       expect(result.name).to.equal("Martelo de Thor")
     });
+  
+    it('Testa a function insertId', async () => {
+    sinon.stub(connection, 'execute').resolves([{ insertId: 1 }])
+    
+    const result = await productsModel.insert('computador')
+
+    expect(result).to.equal(1)
+  })
 });

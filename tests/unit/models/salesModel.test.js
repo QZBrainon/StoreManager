@@ -33,4 +33,12 @@ describe('Testa a rota /sales', () => {
     expect(result[0].quantity).to.equal(5)
     expect(result).to.be.deep.equal(saleByIdMock)
   })
+
+  it('Testa a function insertId', async () => {
+    sinon.stub(connection, 'execute').resolves([{ insertId: 1 }])
+    
+    const result = await salesModel.insertSale()
+
+    expect(result).to.equal(1)
+  })
 })

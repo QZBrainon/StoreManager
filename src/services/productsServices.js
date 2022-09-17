@@ -16,8 +16,16 @@ const postProduct = async (product) => {
   return ({ id: insertId, name: product.name });
 };
 
+const updateProduct = async (product, id) => {
+  const verifyProductId = await getProductById(id);
+  if (!verifyProductId.id) return ({ message: 'Product not found' });
+  await productsModel.update(product, id);
+  return ({ id, name: product.name });
+};
+
 module.exports = {
   getAllProducts,
   getProductById,
   postProduct,
+  updateProduct,
 };

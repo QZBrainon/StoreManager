@@ -32,6 +32,3 @@ describe('Testa a camada model da rota products', () => {
       expect(result.name).to.equal("Martelo de Thor")
     });
 });
-
-   
-

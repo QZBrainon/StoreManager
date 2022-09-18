@@ -34,6 +34,7 @@ const deleteProduct = async (id) => {
     [id],
   );
 };
+//
 
 module.exports = {
   selectAll,
